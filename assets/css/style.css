@@ -1116,7 +1116,7 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: url("../img/footer-bg.jpg") ;
+  background-image:url(../img/footer-bg.jpg);
   color: #fff;
   font-size: 14px;
   text-align: center;
