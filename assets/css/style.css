@@ -524,7 +524,7 @@ section {
 .about .image {
   background: url("../img/me.JPG") center center no-repeat;
   background-size: cover;
-  min-height: 500px;
+  
 }
 .about .skills-content {
   margin-top: 30px;
