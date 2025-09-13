@@ -245,4 +245,27 @@
     }
   });
 
+  /**
+   * Contact form -> WhatsApp redirect
+   */
+  on('submit', '.php-email-form', function(e) {
+    e.preventDefault();
+    const form = this;
+    const name = (form.querySelector('#name') && form.querySelector('#name').value) ? form.querySelector('#name').value.trim() : '';
+    const email = (form.querySelector('#email') && form.querySelector('#email').value) ? form.querySelector('#email').value.trim() : '';
+    const subject = (form.querySelector('#subject') && form.querySelector('#subject').value) ? form.querySelector('#subject').value.trim() : '';
+    const messageEl = form.querySelector('textarea[name="message"]');
+    const message = messageEl ? messageEl.value.trim() : '';
+
+    const composed = `Hello Vivek,%0A%0AName: ${name}%0AEmail: ${email}%0ASubject: ${subject}%0A%0A${message}`;
+    const waUrl = `https://wa.me/34617008802?text=${encodeURIComponent(composed)}`;
+    window.open(waUrl, '_blank');
+
+    if (form.querySelector('.sent-message')) {
+      form.querySelector('.sent-message').classList.add('d-block');
+      setTimeout(() => form.querySelector('.sent-message').classList.remove('d-block'), 4000);
+    }
+    form.reset();
+  }, true);
+
 })()
