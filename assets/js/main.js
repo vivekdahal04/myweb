@@ -246,6 +246,23 @@
   });
 
   /**
+   * Hero slider
+   */
+  new Swiper('.hero-slider', {
+    speed: 800,
+    loop: true,
+    effect: 'fade',
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.hero-slider .swiper-pagination',
+      clickable: true
+    }
+  });
+
+  /**
    * Contact form -> WhatsApp redirect
    */
   on('submit', '.php-email-form', function(e) {

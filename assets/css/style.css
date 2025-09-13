@@ -266,11 +266,18 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top right;
+  position: relative;
+}
+#hero .hero-slider {
+  height: 100%;
+}
+#hero .hero-slide {
+  height: 100vh;
+  background-position: center center;
   background-size: cover;
   position: relative;
 }
-#hero:before {
+#hero .hero-slide:before {
   content: "";
   background: rgba(0, 0, 0, 0.65);
   position: absolute;
@@ -317,9 +324,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffb727;
 }
 @media (min-width: 1024px) {
-  #hero {
-    background-attachment: fixed;
-  }
 }
 @media (max-width: 575px) {
   #hero h1 {
