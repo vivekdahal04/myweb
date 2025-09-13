@@ -267,4 +267,21 @@
     form.reset();
   }, true);
 
+  /**
+   * Dynamic age from birth date
+   */
+  window.addEventListener('load', () => {
+    const ageEl = document.getElementById('age');
+    if (ageEl) {
+      const birth = new Date('2001-03-26T00:00:00Z');
+      const today = new Date();
+      let age = today.getUTCFullYear() - birth.getUTCFullYear();
+      const m = today.getUTCMonth() - birth.getUTCMonth();
+      if (m < 0 || (m === 0 && today.getUTCDate() < birth.getUTCDate())) {
+        age--;
+      }
+      ageEl.textContent = String(age);
+    }
+  });
+
 })()
