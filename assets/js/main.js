@@ -251,10 +251,13 @@
   on('submit', '.php-email-form', function(e) {
     e.preventDefault();
     const form = this;
+    const name = (form.querySelector('#name') && form.querySelector('#name').value) ? form.querySelector('#name').value.trim() : '';
+    const email = (form.querySelector('#email') && form.querySelector('#email').value) ? form.querySelector('#email').value.trim() : '';
     const messageEl = form.querySelector('textarea[name="message"]');
     const message = messageEl ? messageEl.value.trim() : '';
 
-    const waUrl = `https://wa.me/34617008802?text=${encodeURIComponent(message)}`;
+    const composed = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    const waUrl = `https://wa.me/34617008802?text=${encodeURIComponent(composed)}`;
     window.open(waUrl, '_blank');
 
     if (form.querySelector('.sent-message')) {
