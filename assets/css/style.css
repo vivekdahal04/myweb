@@ -1180,3 +1180,211 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+
+/* -------------------------------------------------------------
+   Modern Theme Overrides (Dark + Glassmorphism)
+   Appended to safely override template defaults
+-------------------------------------------------------------- */
+:root {
+  --bg: #0b1220;
+  --bg-alt: #101827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #ffb727;
+  --accent-2: #f59e0b;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 0% 0%, rgba(253, 186, 116, 0.08), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(59, 130, 246, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg-alt));
+  color: var(--text);
+  font-family: "Inter", "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", "Raleway", sans-serif;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: #ffd36a;
+}
+
+/* Header */
+#header {
+  background: rgba(11, 18, 32, 0.75);
+}
+
+#header.header-transparent {
+  background: transparent;
+}
+
+#header.header-scrolled {
+  background: rgba(11, 18, 32, 0.85);
+}
+
+.navbar a, .navbar a:focus {
+  color: #cbd5e1;
+}
+
+.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+  color: var(--accent);
+}
+
+/* Hero */
+#hero:before {
+  background: linear-gradient(180deg, rgba(11, 18, 32, 0.85), rgba(11, 18, 32, 0.6));
+}
+
+#hero h1 {
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ffffff, #fde68a, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#hero h2 {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Sections */
+.section-title h2 {
+  color: var(--text);
+}
+
+.section-title span {
+  color: rgba(148, 163, 184, 0.15);
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+/* Cards / Services - Glassmorphism */
+.services .icon-box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateZ(0);
+}
+
+.services .icon-box:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.services .icon {
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.services .title a {
+  color: var(--text);
+}
+
+.services .description {
+  color: var(--muted);
+}
+
+/* Contact */
+.contact .info-box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+}
+
+.contact .php-email-form {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+}
+
+.contact .php-email-form input,
+.contact .php-email-form textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+}
+
+.contact .php-email-form input::placeholder,
+.contact .php-email-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact .php-email-form button[type=submit] {
+  background: var(--accent);
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  background: #fbbf24;
+}
+
+/* Back to top */
+.back-to-top {
+  background: var(--accent);
+  border-radius: 9999px;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+}
+
+.back-to-top:hover {
+  background: #fbbf24;
+}
+
+/* Footer */
+#footer {
+  color: #e5e7eb;
+}
+
+#footer::before {
+  background: linear-gradient(180deg, rgba(11, 18, 32, 0.85), rgba(11, 18, 32, 0.75));
+}
+
+#footer p {
+  color: var(--muted);
+}
+
+#footer .social-links a {
+  background: var(--accent);
+}
+
+#footer .social-links a:hover {
+  background: #fbbf24;
+}
+
+/* Resume visibility fixes for dark theme */
+.resume .resume-item {
+  border-left: 2px solid var(--card-border);
+}
+
+.resume .resume-item::before {
+  background: transparent;
+  border: 2px solid var(--card-border);
+}
+
+.resume .resume-item h5 {
+  background: rgba(148, 163, 184, 0.14);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+}
