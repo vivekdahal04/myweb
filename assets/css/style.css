@@ -880,28 +880,27 @@ section {
 # Pricing
 --------------------------------------------------------------*/
 .pricing .box {
-  padding: 20px;
-  background: #fff;
+  padding: 24px;
+  background: var(--card);
   text-align: center;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
+  box-shadow: var(--shadow);
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--card-border);
 }
 .pricing h3 {
-  font-weight: 400;
-  margin: -20px -20px 20px -20px;
-  padding: 20px 15px;
-  font-size: 16px;
   font-weight: 600;
-  color: #777777;
-  background: #f8f8f8;
+  margin: 0 0 16px 0;
+  padding: 0;
+  font-size: 16px;
+  color: var(--muted);
 }
 .pricing h4 {
   font-size: 36px;
-  color: #ffb727;
-  font-weight: 600;
-  font-family: "Open Sans", sans-serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: "Inter", "Open Sans", sans-serif;
   margin-bottom: 20px;
 }
 .pricing h4 sup {
@@ -910,23 +909,23 @@ section {
   left: -3px;
 }
 .pricing h4 span {
-  color: #bababa;
+  color: var(--muted);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
 }
 .pricing ul {
   padding: 0;
   list-style: none;
-  color: #444444;
+  color: var(--text);
   text-align: center;
-  line-height: 20px;
+  line-height: 22px;
   font-size: 14px;
 }
 .pricing ul li {
   padding-bottom: 16px;
 }
 .pricing ul i {
-  color: #ffb727;
+  color: var(--accent);
   font-size: 18px;
   padding-right: 4px;
 }
@@ -935,30 +934,27 @@ section {
   text-decoration: line-through;
 }
 .pricing .btn-wrap {
-  margin: 20px -20px -20px -20px;
-  padding: 20px 15px;
-  background: #f8f8f8;
+  margin-top: 20px;
   text-align: center;
 }
 .pricing .btn-buy {
-  background: #ffb727;
+  background: var(--accent);
   display: inline-block;
-  padding: 8px 35px;
-  border-radius: 4px;
-  color: #fff;
+  padding: 10px 36px;
+  border-radius: 8px;
+  color: #0b1220;
   transition: none;
   font-size: 14px;
-  font-weight: 400;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 700;
+  font-family: "Inter", "Raleway", sans-serif;
+  transition: 0.25s;
 }
 .pricing .btn-buy:hover {
-  background: #ffc85a;
+  background: #fbbf24;
+  transform: translateY(-2px);
 }
 .pricing .featured h3 {
-  color: #fff;
-  background: #ffb727;
+  color: var(--text);
 }
 .pricing .advanced {
   width: 200px;
