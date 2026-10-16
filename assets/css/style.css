@@ -137,15 +137,30 @@ p {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
+/*
+  backdrop-filter makes #header the containing block for position:fixed
+  descendants, which traps the open mobile menu inside the 60-80px header.
+  Drop the blur while the menu is open so it can fill the viewport.
+*/
+#header.mobile-nav-open {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: transparent;
+  box-shadow: none;
+  height: auto;
+}
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 .navbar {
-  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .navbar ul {
@@ -279,6 +294,15 @@ p {
   display: none;
   line-height: 0;
   transition: 0.5s ease;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.mobile-nav-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 @media (max-width: 991px) {
@@ -696,7 +720,7 @@ section:nth-child(even) {
 }
 
 .about .image {
-  background: url("../img/me.JPG") center center no-repeat;
+  background: url("../img/me.jpg") center center no-repeat;
   background-size: cover;
   border-radius: 10px;
   overflow: hidden;
@@ -1060,6 +1084,12 @@ section:nth-child(even) {
   color: var(--primary-color);
 }
 
+.contact .info-box .social-links a i {
+  font-size: 18px;
+  margin-bottom: 0;
+  color: inherit;
+}
+
 .contact .php-email-form {
   margin-top: 30px;
 }
@@ -1134,6 +1164,57 @@ section:nth-child(even) {
   padding: 15px;
   margin-bottom: 24px;
   border-radius: 6px;
+}
+
+.contact .php-email-form button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact .php-email-form .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.contact .php-email-form .btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid var(--success-color);
+  border-radius: 6px;
+  color: var(--success-color);
+  background: transparent;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.contact .php-email-form .btn-whatsapp:hover {
+  background: var(--success-color);
+  color: var(--bg-white);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+@media (max-width: 575px) {
+  .contact .php-email-form .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact .php-email-form .form-actions button,
+  .contact .php-email-form .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /*--------------------------------------------------------------

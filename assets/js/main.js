@@ -114,9 +114,11 @@
    * Mobile nav toggle
    */
   on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
+    const opened = select('#navbar').classList.toggle('navbar-mobile')
+    select('#header').classList.toggle('mobile-nav-open', opened)
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
+    this.setAttribute('aria-expanded', String(opened))
   })
 
   /**
@@ -142,6 +144,8 @@
         let navbarToggle = select('.mobile-nav-toggle')
         navbarToggle.classList.toggle('bi-list')
         navbarToggle.classList.toggle('bi-x')
+        navbarToggle.setAttribute('aria-expanded', 'false')
+        select('#header').classList.remove('mobile-nav-open')
       }
       scrollto(this.hash)
     }
@@ -263,26 +267,77 @@
   });
 
   /**
-   * Contact form -> WhatsApp redirect
+   * Contact form -> Formspree (AJAX, no page reload)
    */
-  on('submit', '.php-email-form', function(e) {
-    e.preventDefault();
-    const form = this;
-    const name = (form.querySelector('#name') && form.querySelector('#name').value) ? form.querySelector('#name').value.trim() : '';
-    const email = (form.querySelector('#email') && form.querySelector('#email').value) ? form.querySelector('#email').value.trim() : '';
-    const messageEl = form.querySelector('textarea[name="message"]');
-    const message = messageEl ? messageEl.value.trim() : '';
+  const contactForm = select('.php-email-form');
+  if (contactForm) {
+    const loadingEl = contactForm.querySelector('.loading');
+    const errorEl = contactForm.querySelector('.error-message');
+    const sentEl = contactForm.querySelector('.sent-message');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-    const composed = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const waUrl = `https://wa.me/34617008802?text=${encodeURIComponent(composed)}`;
-    window.open(waUrl, '_blank');
+    const show = (el, msg) => {
+      if (!el) return;
+      if (msg) el.textContent = msg;
+      el.classList.add('d-block');
+    };
+    const hideAll = () => {
+      [loadingEl, errorEl, sentEl].forEach(el => el && el.classList.remove('d-block'));
+    };
 
-    if (form.querySelector('.sent-message')) {
-      form.querySelector('.sent-message').classList.add('d-block');
-      setTimeout(() => form.querySelector('.sent-message').classList.remove('d-block'), 4000);
-    }
-    form.reset();
-  }, true);
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      hideAll();
+
+      // Let the browser surface its own validation UI for empty/invalid fields.
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      const action = contactForm.getAttribute('action') || '';
+      if (action.indexOf('YOUR_FORM_ID') !== -1) {
+        show(errorEl, 'This form is not connected yet. Please email vivekdahal2017@gmail.com or use the WhatsApp button below.');
+        return;
+      }
+
+      // Give the notification email a meaningful subject line.
+      const subjectField = contactForm.querySelector('#subject');
+      const subjectHidden = contactForm.querySelector('input[name="_subject"]');
+      if (subjectField && subjectHidden && subjectField.value.trim()) {
+        subjectHidden.value = `Portfolio enquiry: ${subjectField.value.trim()}`;
+      }
+
+      show(loadingEl);
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(response => response.json().catch(() => ({})).then(data => ({ ok: response.ok, data })))
+        .then(({ ok, data }) => {
+          hideAll();
+          if (ok) {
+            show(sentEl);
+            contactForm.reset();
+          } else {
+            const detail = data && data.errors && data.errors.length
+              ? data.errors.map(err => err.message).join(', ')
+              : 'Something went wrong. Please email vivekdahal2017@gmail.com or use WhatsApp.';
+            show(errorEl, detail);
+          }
+        })
+        .catch(() => {
+          hideAll();
+          show(errorEl, 'Could not reach the server. Please check your connection, or use the WhatsApp button.');
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        });
+    });
+  }
 
   /**
    * Dynamic age from birth date
