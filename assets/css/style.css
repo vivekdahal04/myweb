@@ -847,26 +847,10 @@ section { padding: 110px 0; position: relative; }
   transform: translateY(-2px);
 }
 
-/* In-development cards */
-.project-box.is-upcoming { border-style: dashed; }
-
-.project-box .project-badge {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 4px 12px;
-  border-radius: 50px;
-  background: var(--grad-soft);
-  border: 1px solid var(--border);
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
 
 .project-box h4 > i { color: var(--accent); margin-right: 7px; font-size: 0.95rem; }
 
-/* Non-link store pills (unreleased apps) */
+/* Non-link store pill (platform listed without a store URL) */
 .store-pill {
   display: inline-flex;
   align-items: center;
