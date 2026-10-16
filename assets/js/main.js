@@ -1,269 +1,147 @@
 /**
-* Template Name: Laura - v4.7.0
-* Template URL: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* Vivek Dahal — portfolio
 */
 (function() {
   "use strict";
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
-  }
+  const select = (el, all = false) =>
+    all ? [...document.querySelectorAll(el.trim())] : document.querySelector(el.trim());
 
-  /**
-   * Easy event listener function
-   */
   const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
+    const target = select(el, all);
+    if (!target) return;
+    if (all) target.forEach(e => e.addEventListener(type, listener));
+    else target.addEventListener(type, listener);
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /**
-   * Easy on scroll event listener 
+   * Scroll reveal — staggered within [data-reveal-group]
    */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let header = select('#header')
-    let offset = header.offsetHeight
-
-    if (!header.classList.contains('header-scrolled')) {
-      offset -= 20
-    }
-
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos - offset,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Toggle .header-scrolled class to #header when page is scrolled
-   */
-  let selectHeader = select('#header')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-      }
-    }
-    window.addEventListener('load', headerScrolled)
-    onscroll(document, headerScrolled)
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    const opened = select('#navbar').classList.toggle('navbar-mobile')
-    select('#header').classList.toggle('mobile-nav-open', opened)
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-    this.setAttribute('aria-expanded', String(opened))
-  })
-
-  /**
-   * Mobile nav dropdowns activate
-   */
-  on('click', '.navbar .dropdown > a', function(e) {
-    if (select('#navbar').classList.contains('navbar-mobile')) {
-      e.preventDefault()
-      this.nextElementSibling.classList.toggle('dropdown-active')
-    }
-  }, true)
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let navbar = select('#navbar')
-      if (navbar.classList.contains('navbar-mobile')) {
-        navbar.classList.remove('navbar-mobile')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-        navbarToggle.setAttribute('aria-expanded', 'false')
-        select('#header').classList.remove('mobile-nav-open')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  });
-
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
+  const revealEls = select('[data-reveal]', true);
+  if (revealEls.length) {
+    select('[data-reveal-group]', true).forEach(group => {
+      [...group.children].forEach((child, i) => {
+        child.querySelectorAll('[data-reveal]').forEach(el => {
+          el.style.setProperty('--d', (i * 90) + 'ms');
         });
-      }
-    })
-  }
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
       });
+    });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    } else {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
         });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-
-      }, true);
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      revealEls.forEach(el => io.observe(el));
     }
+  }
 
+  /**
+   * Scroll progress bar
+   */
+  const progress = select('.scroll-progress span');
+  const updateProgress = () => {
+    if (!progress) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = max > 0 ? (window.scrollY / max) * 100 + '%' : '0%';
+  };
+
+  /**
+   * Header state + back-to-top + active nav link
+   */
+  const header = select('#header');
+  const backToTop = select('.back-to-top');
+  const navLinks = select('#navbar .nav-link', true);
+  const sections = select('section[id]', true);
+
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (header) header.classList.toggle('header-scrolled', y > 80);
+    if (backToTop) backToTop.classList.toggle('active', y > 320);
+    updateProgress();
+
+    let current = '';
+    sections.forEach(sec => {
+      if (y >= sec.offsetTop - 140) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href') || '';
+      link.classList.toggle('active', href === '#' + current);
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  window.addEventListener('load', onScroll);
+
+  /**
+   * Smooth scroll with header offset
+   */
+  const scrollto = (hash) => {
+    const el = select(hash);
+    if (!el) return;
+    const offset = (header ? header.offsetHeight : 0) - 1;
+    window.scrollTo({
+      top: el.offsetTop - offset,
+      behavior: reduceMotion ? 'auto' : 'smooth'
+    });
+  };
+
+  on('click', '.scrollto', function(e) {
+    const hash = this.hash;
+    if (!hash || !select(hash)) return;
+    e.preventDefault();
+
+    const navbar = select('#navbar');
+    if (navbar && navbar.classList.contains('navbar-mobile')) closeMobileNav();
+    scrollto(hash);
+  }, true);
+
+  window.addEventListener('load', () => {
+    if (window.location.hash && select(window.location.hash)) {
+      setTimeout(() => scrollto(window.location.hash), 80);
+    }
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Mobile navigation
    */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
+  const toggleBtn = select('.mobile-nav-toggle');
+
+  function closeMobileNav() {
+    const navbar = select('#navbar');
+    if (!navbar) return;
+    navbar.classList.remove('navbar-mobile');
+    if (header) header.classList.remove('mobile-nav-open');
+    if (toggleBtn) {
+      toggleBtn.classList.add('bi-list');
+      toggleBtn.classList.remove('bi-x');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+    document.body.style.overflow = '';
+  }
+
+  on('click', '.mobile-nav-toggle', function() {
+    const navbar = select('#navbar');
+    const opened = navbar.classList.toggle('navbar-mobile');
+    if (header) header.classList.toggle('mobile-nav-open', opened);
+    this.classList.toggle('bi-list', !opened);
+    this.classList.toggle('bi-x', opened);
+    this.setAttribute('aria-expanded', String(opened));
+    document.body.style.overflow = opened ? 'hidden' : '';
   });
 
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Hero slider
-   */
-  new Swiper('.hero-slider', {
-    speed: 800,
-    loop: true,
-    effect: 'fade',
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.hero-slider .swiper-pagination',
-      clickable: true
-    }
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const navbar = select('#navbar');
+    if (navbar && navbar.classList.contains('navbar-mobile')) closeMobileNav();
   });
 
   /**
@@ -281,15 +159,13 @@
       if (msg) el.textContent = msg;
       el.classList.add('d-block');
     };
-    const hideAll = () => {
-      [loadingEl, errorEl, sentEl].forEach(el => el && el.classList.remove('d-block'));
-    };
+    const hideAll = () => [loadingEl, errorEl, sentEl]
+      .forEach(el => el && el.classList.remove('d-block'));
 
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       hideAll();
 
-      // Let the browser surface its own validation UI for empty/invalid fields.
       if (!contactForm.checkValidity()) {
         contactForm.reportValidity();
         return;
@@ -297,11 +173,10 @@
 
       const action = contactForm.getAttribute('action') || '';
       if (action.indexOf('YOUR_FORM_ID') !== -1) {
-        show(errorEl, 'This form is not connected yet. Please email vivekdahal2017@gmail.com or use the WhatsApp button below.');
+        show(errorEl, 'This form is not connected yet. Please email vivekdahal2017@gmail.com or use the WhatsApp button.');
         return;
       }
 
-      // Give the notification email a meaningful subject line.
       const subjectField = contactForm.querySelector('#subject');
       const subjectHidden = contactForm.querySelector('input[name="_subject"]');
       if (subjectField && subjectHidden && subjectField.value.trim()) {
@@ -316,7 +191,7 @@
         body: new FormData(contactForm),
         headers: { 'Accept': 'application/json' }
       })
-        .then(response => response.json().catch(() => ({})).then(data => ({ ok: response.ok, data })))
+        .then(r => r.json().catch(() => ({})).then(data => ({ ok: r.ok, data })))
         .then(({ ok, data }) => {
           hideAll();
           if (ok) {
@@ -333,9 +208,7 @@
           hideAll();
           show(errorEl, 'Could not reach the server. Please check your connection, or use the WhatsApp button.');
         })
-        .finally(() => {
-          if (submitBtn) submitBtn.disabled = false;
-        });
+        .finally(() => { if (submitBtn) submitBtn.disabled = false; });
     });
   }
 
@@ -344,16 +217,13 @@
    */
   window.addEventListener('load', () => {
     const ageEl = document.getElementById('age');
-    if (ageEl) {
-      const birth = new Date('2001-03-26T00:00:00Z');
-      const today = new Date();
-      let age = today.getUTCFullYear() - birth.getUTCFullYear();
-      const m = today.getUTCMonth() - birth.getUTCMonth();
-      if (m < 0 || (m === 0 && today.getUTCDate() < birth.getUTCDate())) {
-        age--;
-      }
-      ageEl.textContent = String(age);
-    }
+    if (!ageEl) return;
+    const birth = new Date('2001-03-26T00:00:00Z');
+    const today = new Date();
+    let age = today.getUTCFullYear() - birth.getUTCFullYear();
+    const m = today.getUTCMonth() - birth.getUTCMonth();
+    if (m < 0 || (m === 0 && today.getUTCDate() < birth.getUTCDate())) age--;
+    ageEl.textContent = String(age);
   });
 
-})()
+})();

@@ -32,8 +32,6 @@
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -47,6 +45,8 @@
 </head>
 
 <body>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex justify-content-center align-items-center header-transparent">
@@ -69,18 +69,28 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
-    <div class="hero-slider swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide hero-slide">
-          <div class="hero-container">
-            <h1>Vivek Dahal</h1>
-            <h2>IT &amp; Network Engineering · Web Development · AI Automation</h2>
-            <a href="#about" class="btn-scroll scrollto" title="Scroll Down"><i class="bx bx-chevron-down"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
+
+    <!-- animated aurora backdrop -->
+    <div class="aurora" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
     </div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <p class="hero-eyebrow" data-reveal><span class="pulse-dot"></span> Available for freelance work</p>
+      <h1 data-reveal>Vivek Dahal</h1>
+      <h2 data-reveal>IT &amp; Network Engineering <span class="sep">·</span> Web Development <span class="sep">·</span> AI Automation</h2>
+      <p class="hero-sub" data-reveal>7+ years building and running network infrastructure, websites and automation for clients across Europe.</p>
+      <div class="hero-cta" data-reveal>
+        <a href="#projects" class="btn-primary scrollto">View my work</a>
+        <a href="#contact" class="btn-ghost scrollto">Get in touch</a>
+      </div>
+    </div>
+
+    <a href="#about" class="btn-scroll scrollto" aria-label="Scroll to About"><i class="bx bx-chevron-down" aria-hidden="true"></i></a>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -89,16 +99,16 @@
     <section id="about" class="about">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>About Me</span>
           <h2>About Me</h2>
           <p>IT &amp; Network Engineer with 7+ years of experience in system administration, WAN/LAN networking and technical support — now building websites, apps and automation for European clients.</p>
         </div>
 
         <div class="row">
-          <div class="image col-lg-4 d-flex align-items-stretch justify-content-center justify-content-lg-start" role="img" aria-label="Vivek Dahal hiking in the Himalayas"></div>
+          <div data-reveal class="image col-lg-4 d-flex align-items-stretch justify-content-center justify-content-lg-start" role="img" aria-label="Vivek Dahal hiking in the Himalayas"></div>
           <div class="col-lg-8 d-flex flex-column align-items-stretch">
-            <div class="content ps-lg-4 d-flex flex-column justify-content-center">
+            <div data-reveal class="content ps-lg-4 d-flex flex-column justify-content-center">
               <div class="mb-4">
                 <p>Hi! I’m Vivek Dahal, an IT &amp; Network Engineer with over 7 years of experience in system administration, WAN/LAN network configuration and technical support in high-demand environments. I’m a B.Tech graduate in Computer Science &amp; Engineering, with deep expertise across Windows and Linux systems.</p>
                 <p>Alongside that core IT work, I build and deploy websites and mobile apps using AI-assisted development tools, automate workflows with n8n, Make.com and Claude AI, and run SaaS products on cloud platforms like Supabase.</p>
@@ -124,7 +134,7 @@
               </div>
               <div class="row mt-n4">
                 <div class="col-md-6 mt-5 d-md-flex align-items-md-stretch">
-                  <div class="count-box">
+                  <div class="count-box" data-reveal>
                     <i class="bi bi-clock" style="color: #2cbdee;"></i>
                     <span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Years of experience</strong> across system administration, networking and web development</p>
@@ -132,15 +142,15 @@
                 </div>
 
                 <div class="col-md-6 mt-5 d-md-flex align-items-md-stretch">
-                  <div class="count-box">
-                    <i class="bi bi-rocket-takeoff" style="color: #20b38e;"></i>
+                  <div class="count-box" data-reveal>
+                    <i class="bi bi-stack" style="color: #20b38e;"></i>
                     <span data-purecounter-start="0" data-purecounter-end="9" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Projects delivered</strong> — 7 live websites and 2 published mobile apps</p>
                   </div>
                 </div>
 
                 <div class="col-md-6 mt-5 d-md-flex align-items-md-stretch">
-                  <div class="count-box">
+                  <div class="count-box" data-reveal>
                     <i class="bi bi-translate" style="color: #ffb459;"></i>
                     <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1" class="purecounter"></span>
                     <p><strong>Languages</strong> — Nepali (native), English and Hindi (advanced), Spanish (A2)</p>
@@ -149,7 +159,7 @@
               </div>
             </div><!-- End .content-->
 
-            <div class="skills-content ps-lg-4">
+            <div class="skills-content ps-lg-4" data-reveal>
               <h3 class="skills-title">Technical Skills</h3>
               <ul class="skill-tags">
                 <li>Hardware Troubleshooting</li>
@@ -177,7 +187,7 @@
     <section id="resume" class="resume">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>My Resume</span>
           <h2>My Resume</h2>
           <p></p>
@@ -185,8 +195,8 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <h3 class="resume-title">Summary</h3>
-            <div class="resume-item pb-0">
+            <h3 class="resume-title" data-reveal>Summary</h3>
+            <div data-reveal class="resume-item pb-0">
               <h4>Vivek Dahal</h4>
               <p><em>IT &amp; Network Engineer with 7+ years of experience in system administration, WAN/LAN network configuration and technical support in high-demand environments. B.Tech graduate in Computer Science &amp; Engineering with deep expertise in Windows and Linux systems, now delivering websites, mobile apps and workflow automation for European clients.</em></p>
               <ul>
@@ -196,21 +206,21 @@
               </ul>
             </div>
 
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
+            <h3 class="resume-title" data-reveal>Education</h3>
+            <div data-reveal class="resume-item">
               <h4>B.Tech — Computer Science &amp; Engineering</h4>
               <h5>2017 - 2021</h5>
               <p><em>B V Chalamaiah Engg. College, JNTUK — India</em></p>
               <p>First Class · CGPA 7.22<br>
                 Jawaharlal Nehru Technological University Kakinada</p>
             </div>
-            <div class="resume-item">
+            <div data-reveal class="resume-item">
               <h4>Hardware &amp; Network Engineering</h4>
               <h5>2018 - 2022</h5>
               <p><em>DAV Institute of Information Technology — Jawalakhel</em></p>
               <p>Graduated with Distinction · 93%</p>
             </div>
-            <div class="resume-item">
+            <div data-reveal class="resume-item">
               <h4>+2 Science</h4>
               <h5>2015 - 2017</h5>
               <p><em>Columbus HSS &amp; College — Kathmandu</em></p>
@@ -218,8 +228,8 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
+            <h3 class="resume-title" data-reveal>Professional Experience</h3>
+            <div data-reveal class="resume-item">
               <h4>Web Developer &amp; IT Consultant (Remote)</h4>
               <h5>2023 - Present</h5>
               <p><em>Schaubel &amp; Peukert GmbH — Landau, Germany<br><a href="https://www.driftelement.com" target="_blank" rel="noopener">www.driftelement.com</a></em></p>
@@ -230,7 +240,7 @@
                 <li>Deployment and management of SaaS platforms on cloud infrastructure (Supabase).</li>
               </ul>
             </div>
-            <div class="resume-item">
+            <div data-reveal class="resume-item">
               <h4>IT Analyst</h4>
               <h5>Feb 2022 - Present</h5>
               <p><em>Bluecross Hospital — Tripureshwor, Kathmandu</em></p>
@@ -241,7 +251,7 @@
                 <li>Installation and integration of new hardware and software systems.</li>
               </ul>
             </div>
-            <div class="resume-item">
+            <div data-reveal class="resume-item">
               <h4>Network Administrator</h4>
               <h5>Feb 2020 - Jan 2022</h5>
               <p><em>Buddha Air — Kathmandu</em></p>
@@ -252,7 +262,7 @@
                 <li>Integration of new hardware and software systems into existing infrastructure.</li>
               </ul>
             </div>
-            <div class="resume-item">
+            <div data-reveal class="resume-item">
               <h4>Junior System Administrator</h4>
               <h5>Feb 2018 - Jan 2020</h5>
               <p><em>DAV College — Jawalakhel, Lalitpur</em></p>
@@ -272,15 +282,15 @@
     <section id="services" class="services">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>My Services</span>
           <h2>My Services</h2>
           <p></p>
         </div>
 
-        <div class="row">
+        <div class="row" data-reveal-group>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
+            <div class="icon-box" data-reveal>
               <div class="icon"><i class="bx bx-network-chart"></i></div>
               <h4 class="title">IT &amp; Network Engineering</h4>
               <p class="description">WAN/LAN configuration, system administration and infrastructure support across Windows and Linux environments.</p>
@@ -288,7 +298,7 @@
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
+            <div class="icon-box" data-reveal>
               <div class="icon"><i class="bx bx-code-alt"></i></div>
               <h4 class="title">Web &amp; App Development</h4>
               <p class="description">Responsive websites and mobile apps, built and deployed with modern, AI-assisted development tools.</p>
@@ -296,7 +306,7 @@
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
+            <div class="icon-box" data-reveal>
               <div class="icon"><i class="bx bx-bot"></i></div>
               <h4 class="title">AI Automation &amp; Workflows</h4>
               <p class="description">Workflow automation with n8n, Make.com and Claude AI to remove repetitive manual work from your operations.</p>
@@ -304,7 +314,7 @@
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
+            <div class="icon-box" data-reveal>
               <div class="icon"><i class="bx bx-chip"></i></div>
               <h4 class="title">Hardware &amp; IT Support</h4>
               <p class="description">Hardware and software troubleshooting, diagnostics, repairs, upgrades and ongoing maintenance.</p>
@@ -320,59 +330,59 @@
     <section id="projects" class="projects">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>Projects</span>
           <h2>Projects</h2>
           <p>Websites and apps I have designed, built and shipped.</p>
         </div>
 
-        <h3 class="projects-subtitle">Websites</h3>
-        <div class="row">
+        <h3 class="projects-subtitle" data-reveal>Websites</h3>
+        <div class="row" data-reveal-group>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.driftelement.com/" target="_blank" rel="noopener">DriftElement <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>German luxury watch brand — full web design.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.makler-ai.com/en" target="_blank" rel="noopener">Makler AI <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>AI-powered real estate exposé generation SaaS platform.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.clever-invoice.com/en" target="_blank" rel="noopener">Clever Invoice <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>Invoicing SaaS for freelancers &amp; SMEs in the DACH market.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.ra-hausmeisterservice.de/" target="_blank" rel="noopener">RA Hausmeisterservice <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>Cleaning &amp; facility services website.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.tecoil.de/" target="_blank" rel="noopener">Tecoil <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>Corporate website for an industrial oils company.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://www.elektro-lutz.de/" target="_blank" rel="noopener">Elektro Lutz <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>Electrical services company website.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4><a href="https://ferienwohnung.landau-webdesign.de/" target="_blank" rel="noopener">Ferienwohnung Landau <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a></h4>
               <p>Holiday apartment rental website.</p>
             </div>
@@ -380,27 +390,27 @@
 
         </div>
 
-        <h3 class="projects-subtitle">Mobile Apps</h3>
+        <h3 class="projects-subtitle" data-reveal>Mobile Apps</h3>
         <div class="row">
 
           <div class="col-md-6 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4>Clever Invoice DE/AT</h4>
               <p>Invoicing app for the German and Austrian market.</p>
               <div class="store-links">
                 <a href="https://apps.apple.com/us/app/clever-invoice/id6758674373" target="_blank" rel="noopener"><i class="bi bi-apple" aria-hidden="true"></i> App Store</a>
-                <a href="https://play.google.com/store/apps/details?id=com.cleverinvoice.app" target="_blank" rel="noopener"><i class="bi bi-google-play" aria-hidden="true"></i> Google Play</a>
+                <a href="https://play.google.com/store/apps/details?id=com.cleverinvoice.app" target="_blank" rel="noopener"><i class="bi bi-google" aria-hidden="true"></i> Google Play</a>
               </div>
             </div>
           </div>
 
           <div class="col-md-6 d-flex align-items-stretch">
-            <div class="project-box">
+            <div class="project-box" data-reveal>
               <h4>Clever Invoice Schweiz</h4>
               <p>Invoicing app for the Swiss market.</p>
               <div class="store-links">
                 <a href="https://apps.apple.com/es/app/clever-invoice-schweiz/id6759067958" target="_blank" rel="noopener"><i class="bi bi-apple" aria-hidden="true"></i> App Store</a>
-                <a href="https://play.google.com/store/apps/details?id=app.cleverinvoice.ch" target="_blank" rel="noopener"><i class="bi bi-google-play" aria-hidden="true"></i> Google Play</a>
+                <a href="https://play.google.com/store/apps/details?id=app.cleverinvoice.ch" target="_blank" rel="noopener"><i class="bi bi-google" aria-hidden="true"></i> Google Play</a>
               </div>
             </div>
           </div>
@@ -414,7 +424,7 @@
     <section id="pricing" class="pricing">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>Pricing</span>
           <h2>Pricing</h2>
           <p>Network setup and troubleshooting rates</p>
@@ -422,7 +432,7 @@
 
         <div class="row">
           <div class="col-lg-6 col-md-6">
-            <div class="box">
+            <div class="box" data-reveal>
               <h3>Hourly</h3>
               <h4><sup>€</sup>25<span> / hour</span></h4>
               <ul>
@@ -462,7 +472,7 @@
     <section id="contact" class="contact">
       <div class="container">
 
-        <div class="section-title">
+        <div class="section-title" data-reveal>
           <span>Contact Me</span>
           <h2>Contact Me</h2>
           <p></p>
@@ -474,7 +484,7 @@
 
             <div class="row">
               <div class="col-md-12">
-                <div class="info-box">
+                <div class="info-box" data-reveal>
                   <i class="bx bx-share-alt"></i>
                   <h3>Social Profiles</h3>
                   <div class="social-links">
@@ -512,7 +522,7 @@
               8-character ID from your endpoint, e.g. action="https://formspree.io/f/xyzabcde".
               Until that is done the form shows a notice instead of silently failing.
             -->
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="post" role="form" class="php-email-form" novalidate>
+            <form data-reveal action="https://formspree.io/f/YOUR_FORM_ID" method="post" role="form" class="php-email-form" novalidate>
 
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -589,11 +599,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
