@@ -587,8 +587,8 @@ section { padding: 110px 0; position: relative; }
 
 .count-box i { font-size: 30px; margin-bottom: 12px; display: block; }
 
-.count-box span {
-  display: block;
+.count-box span.purecounter {
+  display: inline-block;
   font-size: 2.6rem;
   font-weight: 900;
   line-height: 1;
@@ -600,6 +600,23 @@ section { padding: 110px 0; position: relative; }
 }
 
 .count-box p { margin: 0; font-size: 0.9rem; color: var(--text-mute); }
+/* "+" suffix rendered separately: this purecounter build has no suffix option */
+.count-box .count-plus {
+  display: inline-block;
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-left: 2px;
+  vertical-align: top;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.count-box span.purecounter { display: inline-block; margin-bottom: 0; }
+.count-box .purecounter + .count-plus { margin-bottom: 10px; }
+
 .count-box p strong { color: var(--text); display: block; margin-bottom: 3px; }
 
 .skills-content { margin-top: 40px; padding: 30px; }
@@ -828,6 +845,39 @@ section { padding: 110px 0; position: relative; }
   color: var(--text);
   border-color: var(--accent);
   transform: translateY(-2px);
+}
+
+/* In-development cards */
+.project-box.is-upcoming { border-style: dashed; }
+
+.project-box .project-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: var(--grad-soft);
+  border: 1px solid var(--border);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-box h4 > i { color: var(--accent); margin-right: 7px; font-size: 0.95rem; }
+
+/* Non-link store pills (unreleased apps) */
+.store-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 50px;
+  background: transparent;
+  border: 1px dashed var(--border-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mute);
 }
 
 /*--------------------------------------------------------------
