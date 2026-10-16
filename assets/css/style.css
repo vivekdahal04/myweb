@@ -732,45 +732,39 @@ section:nth-child(even) {
   margin-top: 40px;
 }
 
-.about .skills-content .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
-  margin-bottom: 30px;
-}
-
-.about .skills-content .progress .skill {
-  padding: 10px 0;
-  margin: 0 0 8px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 700;
-  font-family: "Inter", sans-serif;
-  color: var(--text-dark);
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
-}
-
-.about .skills-content .progress .skill .val {
-  float: right;
-  font-style: normal;
-  color: var(--accent-color);
+.about .skills-content .skills-title {
+  font-size: 1.1rem;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
 }
 
-.about .skills-content .progress-bar-wrap {
-  background: var(--border-color);
-  border-radius: 10px;
-  overflow: hidden;
-  height: 8px;
+.about .skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.about .skills-content .progress-bar {
-  height: 8px;
-  transition: width 0.9s ease;
-  background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-light) 100%);
-  border-radius: 10px;
+.about .skill-tags li {
+  padding: 8px 16px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.about .skill-tags li:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 /*--------------------------------------------------------------
@@ -918,6 +912,96 @@ section:nth-child(even) {
 
 .services .icon-box:hover .title a {
   color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Projects
+--------------------------------------------------------------*/
+.projects {
+  background-color: var(--bg-light);
+}
+
+.projects .projects-subtitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dark);
+  margin: 10px 0 25px 0;
+}
+
+.projects .row + .projects-subtitle {
+  margin-top: 45px;
+}
+
+.projects .project-box {
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 28px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.projects .project-box:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.projects .project-box h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.projects .project-box h4 a {
+  color: var(--text-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projects .project-box h4 a:hover {
+  color: var(--accent-color);
+}
+
+.projects .project-box h4 a i {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.projects .project-box p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.projects .store-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.projects .store-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.projects .store-links a:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--bg-white);
 }
 
 /*--------------------------------------------------------------
